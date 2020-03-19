@@ -1,2 +1,2 @@
-# TextAdventure
+# (Ma)quest
 Quinn Croese
