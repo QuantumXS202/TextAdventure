@@ -43,15 +43,15 @@ directions[7] = ["noord", "west", "oost"];
 directions[8] = ["noord", "west"];
 
 descriptions = [];
-descriptions[0] = "u staat in een kantine. Hier zitten studenten te eten of computerspelletjes te doen";
-descriptions[1] = "u staat op een trap naar de eerste etage. Om u heen lopen studenten omhoog en omlaag";
-descriptions[2] = "u heeft gewonnen";
-descriptions[3] = "u staat in de lerarenkamer. De leraren eten hier hun lunch of drinken koffie of thee";
-descriptions[4] = "u staat in een gang. Studenten en leraren lopen richting de klaslokalen";
-descriptions[5] = "u staat in het medialab. Hier kan geexperimenteerd worden met bijvoorbeeld virtual reality brillen";
-descriptions[6] = "u staat bij de toiletten";
-descriptions[7] = "u staat in een klaslokaal. De tafels staan recht achter elkaar en voorin is een projector en een smartboard";
-descriptions[8] = "u staat in het examenlokaal. Hier zijn de vierdejaars studenten bezig met het voorbereiden van hun examen";
+descriptions[0] = ["u staat in een kantine. Hier zitten studenten te eten of computerspelletjes te doen","","",""];
+descriptions[1] = ["u staat op een trap naar de eerste etage. Om u heen lopen studenten omhoog en omlaag","","",""];
+descriptions[2] = ["u heeft gewonnen","","","Muis"];
+descriptions[3] = ["u staat in de lerarenkamer. De leraren eten hier hun lunch of drinken koffie of thee","dit-is-een-router","router.png",""];
+descriptions[4] = ["u staat in een gang. Studenten en leraren lopen richting de klaslokalen","","",""];
+descriptions[5] = ["u staat in het medialab. Hier kan geexperimenteerd worden met bijvoorbeeld virtual reality brillen"];
+descriptions[6] = ["u staat bij de toiletten","dit is een muis","Muis.png",""];
+descriptions[7] = ["u staat in een klaslokaal. De tafels staan recht achter elkaar en voorin is een projector en een smartboard","","",""];
+descriptions[8] = ["u staat in het examenlokaal. Hier zijn de vierdejaars studenten bezig met het voorbereiden van hun examen","dit-is-een-jbl-box","JBL box.png",""];
 
 treasure = [];
 treasure[8] = "JBL box";
@@ -62,6 +62,8 @@ treasureImages = [];
 treasureImages[8] = "JBL box.png";
 treasureImages[6] = "Muis.png";
 treasureImages[3] = "router.png";
+
+inventory = [];
 
 myInput.addEventListener('keydown', getInput, false);
 
@@ -115,7 +117,7 @@ function getInput(evt) {
 
 function giveLocation() {
   divLocation.innerHTML = locations[currentLocation] + "grid" + currentLocation;
-  myDescription.innerHTML = descriptions[currentLocation];
+  myDescription.innerHTML = descriptions[currentLocation][0];
   imageLocation.src = "media/" + images[currentLocation];
   myDirections = "mogelijke richtingen zijn: ";
   for (let i = 0; i < directions[currentLocation].length; i++) {
@@ -132,10 +134,10 @@ function removeFeedback() {
 
 function showtTreasure(currentLocation)
 {
-    if(typeof treasure[currentLocation] != "undefined")
+    if(descriptions[currentLocation][1] != "")
     {
-      console.log(treasure[currentLocation]);
-      treasureuren.src = "treasure/" + treasureImages[currentLocation];
+      console.log(descriptions[currentLocation][1]);
+      treasureuren.src = "treasure/" + descriptions[currentLocation][2];
     }
     else
     {
